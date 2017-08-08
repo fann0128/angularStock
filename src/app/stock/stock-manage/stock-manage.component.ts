@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Stock, StockService } from '../stock.service';
-
+import { FormControl } from '@angular/forms';
+import 'rxjs/Rx';
 @Component({
   selector: 'app-stock-manage',
   templateUrl: './stock-manage.component.html',
@@ -9,18 +10,26 @@ import { Stock, StockService } from '../stock.service';
 })
 export class StockManageComponent implements OnInit {
   private stocks: Array<Stock>;
+  private keyword:string;
 
-  constructor(public router:Router,private stockService:StockService) { }
+  searchInput: FormControl = new FormControl();
+
+  constructor(public router: Router, private stockService: StockService) { 
+    this.searchInput.valueChanges
+        .debounceTime(500)
+        .subscribe(value => this.keyword = value);
+  }
 
   ngOnInit() {
     this.stocks = this.stockService.getStocks();
   }
 
-  create(){
+  create() {
     this.router.navigateByUrl('/stocks/0');
   }
-  update(stock:Stock){
-    this.router.navigateByUrl('/stocks/'+stock.id);
+  update(stock: Stock) {
+    this.router.navigateByUrl('/stocks/' + stock.id);
   }
+
 
 }

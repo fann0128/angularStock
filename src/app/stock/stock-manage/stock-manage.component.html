@@ -3,7 +3,7 @@
     <a class="btn btn-sm btn-success" (click)="create()"><span class="glyphicon glyphicon-plus"></span>Create</a>
     <div class="box-tools">
       <div class="input-group input-group-sm" style="width: 150px;">
-        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+        <input [formControl]="searchInput" class="form-control pull-right" placeholder="Search">
         <div class="input-group-btn">
           <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -21,7 +21,7 @@
           <th>Rating</th>
           <th>Action</th>
         </tr>
-        <tr *ngFor="let stock of stocks">
+        <tr *ngFor="let stock of stocks | stockFilter:'name':keyword">
           <td>{{stock.id}}</td>
           <td>{{stock.name}}</td>
           <td>{{stock.price}}</td>
