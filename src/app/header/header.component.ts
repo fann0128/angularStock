@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  private nbOfMessages:number;
+  constructor() { 
+
+    this.nbOfMessages = Math.round(Math.random()*10) + 1;
+
+  }
 
   ngOnInit() {
   }

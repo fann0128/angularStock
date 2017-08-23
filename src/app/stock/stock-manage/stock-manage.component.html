@@ -26,7 +26,7 @@
           <td>{{stock.name}}</td>
           <td>{{stock.price}}</td>
           <td>
-            <app-star [rating]="stock.rating"></app-star>
+            <app-star [rating]="stock.rating" [readOnly]="true"></app-star>
           </td>
           <td>
             <a class="btn btn-xs btn-warning" (click)="update(stock)"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
